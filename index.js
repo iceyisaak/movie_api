@@ -87,7 +87,18 @@ const movieList = [
       }
     ],
     imageURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS3E0TK3iq5527vUbBosSbyNHFESuSoFtev2dTk3y843rcyRLMG'
-  },
+  }
+];
+
+const usersList = [
+  {
+    info: {
+      username: '',
+      email: '',
+      password: ''
+    },
+    favMovies: []
+  }
 ];
 
 
@@ -133,20 +144,22 @@ app.get('/movies/:title', (req, res) => {
   );
 });
 
-// GET a genre by movie
+// GET a movie genre by movie title
 app.get('/movies/:title/:description', (req, res) => {
+
+  // Get the movie by name
   let movie = movieList.find(
     (movie) => {
       return movie.title === req.params.title;
     }
   );
 
+  // If that movie exists in database, 
   if (movie) {
-    // let genre = movieList.description.genre;
 
-    const movieGenre = movieList[description][genre];
-    return movieGenre;
-
+    // access its genre
+    let genre = movieList.description.genre;
+    return genre;
 
   } else {
     res
@@ -158,6 +171,63 @@ app.get('/movies/:title/:description', (req, res) => {
 });
 
 
+// GET a movie director by name
+app.get('/movies/:director', (req, res) => {
+  let movie;
+});
+
+
+
+// POST: Add to favMovies
+app.post('/users/:id/:favMovies', (req, res) => {
+  // Add movies to favourite
+});
+
+
+
+// GET all users
+app.get('/users', (req, res) => {
+  res.json(usersList);
+});
+
+
+// POST a new user to list
+app.post('/users', (req, res) => {
+
+  let newUser = req.body;
+  if (!newUser.username) {
+    const message = 'Please add your info.';
+    res.send(message);
+  } else {
+    newUser.id = uuid.v4();
+    newUser.push(newUser);
+    res
+      .status(201)
+      .send(newUser);
+  }
+});
+
+
+// DEELTE: Remove a user
+app.delete('/users/:id', (req, res) => {
+  let user = userList.find(
+    (user) => {
+      return user.id = req.params.id;
+    }
+  );
+
+  if (user) {
+    usersList = usersList.filter(
+      (obj) => {
+        return obj.id !== req.params.id;
+      }
+    );
+  }
+  res
+    .status(201)
+    .send(`User with ${userList.info.email} has been deleted.`);
+});
+
 
 
 // Listen for response on this port
@@ -165,4 +235,3 @@ const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-
