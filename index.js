@@ -207,8 +207,29 @@ app.post('/users', (req, res) => {
   }
 });
 
+// PUT: Update User Info
+app.put('/users/:id', (req, res) => {
+  let user = usersList.find(
+    (user) => {
+      return user.username === req.params.username;
+    }
+  );
 
-// DEELTE: Remove a user
+  if (user) {
+    // Overwrite existing info with new info
+
+    res
+      .status(201)
+      .send('User info has been changed successfully.');
+  } else {
+    res
+      .status(404)
+      .send('User not found.');
+  }
+});
+
+
+// DELETE: Remove a user
 app.delete('/users/:id', (req, res) => {
   let user = userList.find(
     (user) => {
