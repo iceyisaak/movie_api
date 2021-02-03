@@ -4,16 +4,146 @@
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="resources/css/style.css">
  <title>Movie API Documentation</title>
 </head>
 
 <body>
 
- <h1>MyFlix API Documentation</h1>
+ <h1 class="h1__primary">MyFlix API Documentation</h1>
 
- <p>
+ <p class="p mb-2">
   This is the API documentation. Here, developers can find relevant endpoints to interact with our the database.
  </p>
+
+ <h2 class="h2">
+  List of All Endpoints
+ </h2>
+
+ <table class="table">
+  <!-- Table Head -->
+  <tr>
+   <th class="th">
+    Request
+   </th>
+   <th class="th">
+    URL
+   </th>
+   <th class="th">
+    Response
+   </th>
+  </tr>
+
+  <!-- Table Data -->
+  <tr>
+   <td class="td">
+    GET: Fetch all movies
+   </td>
+   <td class="td">
+    /movies
+   </td>
+   <td class="td">
+    JSON: Data of all movies in the database
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    GET: Fetch a single movie by title
+   </td>
+   <td class="td">
+    /movies/:title
+   </td>
+   <td class="td">
+    JSON: Data of a particular movie in the database
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    GET: Fetch a genre by genre name
+   </td>
+   <td class="td">
+    /movies/genre/:name
+   </td>
+   <td class="td">
+    JSON: Movie genre of a particular movie
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    GET: Fetch a movie director by name
+   </td>
+   <td class="td">
+    /movies/:director/:name
+   </td>
+   <td class="td">
+    JSON: Data of a movie director (along with bio, birth year, and dead year)
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    POST: Add a new user
+   </td>
+   <td class="td">
+    /users
+   </td>
+   <td class="td">
+    JSON: Data of recently added user
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    POST: User adds a movie to the list of favourite
+   </td>
+   <td class="td">
+    /users/:username/:movie/:id
+   </td>
+   <td class="td">
+    Text: Showing that the user has added a new movie successfully from a list of favourite.
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    PUT: Update user info by username
+   </td>
+   <td class="td">
+    /users/:username
+   </td>
+   <td class="td">
+    Text: Showing that user data has been successfully updated.
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    DELETE: User can remove a movie from the list of favourite
+   </td>
+   <td class="td">
+    /users/:username/:movie/:id
+   </td>
+   <td class="td">
+    Text: Showing that the user has removed a movie successfully from a list of favourite
+   </td>
+  </tr>
+
+  <tr>
+   <td class="td">
+    DELETE: User can deregister from the platform
+   </td>
+   <td class="td">
+    /users/:username
+   </td>
+   <td class="td">
+    Text: Showing that the user data has removed from the platform
+   </td>
+  </tr>
+
+ </table>
 
 </body>
 

@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 62.5%;
+}
+
+.h1__primary {
+  font-size: 5rem;
+}
+
+.h2 {
+  font-size: 2.5rem;
+}
+
+.h3 {
+  font-size: 1.8rem;
+}
+
+.p {
+  font-size: 1.4rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 2rem;
+}
+
+.table {
+  width: 80%;
+}
+
+.th {
+  text-align: left;
+  background: #7a7a7a;
+  color: white;
+  padding: 0.2rem 0.5rem;
+  font-size: 1.5rem;
+}
+
+.td {
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+tr:nth-child(2n + 1) {
+  background: rgb(192, 192, 192);
+}
