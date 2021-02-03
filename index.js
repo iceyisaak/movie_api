@@ -145,9 +145,9 @@ app.get('/movies/:title', (req, res) => {
 });
 
 // GET a movie genre by movie title
-app.get('/movies/:title/:description', (req, res) => {
+app.get('/movies/:genre/:name', (req, res) => {
 
-  // Get the movie by name
+  // Get the movie by movie title
   let movie = movieList.find(
     (movie) => {
       return movie.title === req.params.title;
