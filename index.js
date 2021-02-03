@@ -10,83 +10,38 @@ const app = express();
 // movieList Object Array
 const movieList = [
   {
-    title: 'The Gentlemen',
-    description: {
-      summary: 'Mickey Pearson is an American expatriate who became rich by building a highly profitable marijuana empire in London. When word gets out that he\'s looking to cash out of the business, it soon triggers an array of plots and schemes -- including bribery and blackmail -- from shady characters who want to steal his domain.',
-      genre: [
-        'Action',
-        'Crime'
-      ],
+    title: 'Bohemian Rhapsody',
+    year: 2018,
+    description: 'Description about Bohemian Rhapsody',
+    genre: {
+      name: 'drama',
+      description: 'Description of biographical drama'
     },
-    year: 2019,
-    director: [
-      {
-        name: 'Guy Ritchie',
-        bio: 'Guy Stuart Ritchie is an English film director, producer, writer, and businessman. His work includes British gangster films and the Sherlock Holmes franchise. Ritchie left school at age 15 and worked entry-level jobs in the film industry before going on to direct television commercials.',
-        birthYear: 1968,
-        deathYear: null,
-      }
-    ],
-    imageURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRubFp5zFZxMxjaZN88iqFJTsDM9jwXnVAP4cfZ9T1Ah2rKPp3y'
+    director: {
+      name: 'Bryan Singer',
+      bio: 'Bio of Bryan Singer',
+      birth: '1965',
+      death: ''
+    },
+    imageURL: '',
+    featured: ''
   },
   {
-    title: 'Archive',
-    description: {
-      summary: '2038: George Almore is working on a true human-equivalent AI. His latest prototype is almost ready. This sensitive phase is also the riskiest. Especially as he has a goal that must be hidden at all costs: being reunited with his dead wife.',
-      genre: [
-        'Sci-Fi'
-      ]
+    title: 'Forrest Gump',
+    year: 1994,
+    description: 'Description about Forrest Gump',
+    genre: {
+      name: 'drama',
+      description: 'Description of comedy drama'
     },
-    year: 2020,
-    director: [
-      {
-        name: 'Gavin Rothery',
-        bio: '',
-        birthYear: null,
-        deathYear: null
-      }
-    ],
-    imageURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm15yfUV1tKyrUa1mlbEnSnbP5CRL9w-JHSlyJen-EssCdNG89'
-  },
-  {
-    title: 'The Dig',
-    description: {
-      summary: 'An excavator and his team discover a wooden ship from the Dark Ages while digging up a burial ground on a woman\'s estate.',
-      genre: [
-        'Drama',
-        'History'
-      ],
+    director: {
+      name: 'Robert Zemeckis',
+      bio: 'Bio of Robert Zemeckis',
+      birth: '1952',
+      death: ''
     },
-    year: 2021,
-    director: [
-      {
-        name: 'Simon Stone',
-        bio: 'Simon Stone is an Australian film and theatre director, writer and actor.',
-        birthYear: 1984,
-        deathYear: null
-      }
-    ],
-    imageURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTSZdGrSNXrJ_PCXvngEnHn19tdTUtKKh6xfDp9oT-HrHqbZOxw'
-  },
-  {
-    title: 'After',
-    description: {
-      summary: 'Tessa Young is a dedicated student, dutiful daughter and loyal girlfriend to her high school sweetheart. Entering her first semester of college, Tessa\'s guarded world opens up when she meets Hardin Scott, a mysterious and brooding rebel who makes her question all she thought she knew about herself -- and what she wants out of life.',
-      genre: [
-        'Romance',
-        'Drama'
-      ],
-    },
-    year: 2019,
-    director: [
-      {
-        name: 'Jenny Gage',
-        bio: 'Jenny Gage is Academic Coordinator for the Motivate Project, Millennium, Mathematics at Cambridge University. She also provides training in the use of interactive whiteboards for teaching mathematics at all levels.',
-        birthYear: 1969,
-        deathYear: null
-      }
-    ],
-    imageURL: 'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS3E0TK3iq5527vUbBosSbyNHFESuSoFtev2dTk3y843rcyRLMG'
+    imageURL: '',
+    featured: ''
   }
 ];
 
@@ -166,8 +121,6 @@ app.get('/movies/:genre/:name', (req, res) => {
       .status(404)
       .send(`Movie with the title of ${movie} is not found.`);
   }
-
-
 });
 
 
