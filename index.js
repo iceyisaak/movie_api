@@ -142,13 +142,6 @@ app.get('/movies/director/:name', (req, res) => {
 
 
 
-
-// GET all users
-app.get('/users', (req, res) => {
-  res.json(usersList);
-});
-
-
 // POST a new user to list
 app.post('/users', (req, res) => {
 
@@ -185,7 +178,8 @@ app.put('/users/:username', (req, res) => {
 
 
 // POST: user add new movie
-app.post('/users/:username/movies/:id', (req, res) => {
+app.post('/users/:username/movies/:title', (req, res) => {
+
   res.send('Movie Added to Favourite');
 });
 
@@ -198,14 +192,14 @@ app.delete('/users/:username/movies/:id', (req, res) => {
 
 // DELETE: Remove a user
 app.delete('/users/:username', (req, res) => {
-  userList.find(
+  usersList.find(
     (user) => {
       return user.username = req.params.username;
     }
   );
   res
     .status(201)
-    .send(`User with ${userList.info.email} has been deleted.`);
+    .send(`User has been deleted.`);
 });
 
 
