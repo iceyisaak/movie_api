@@ -3,6 +3,20 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
+const mongoose = require('mongoose');
+
+// Import Models
+const Models = require('./models');
+const Movies = Models.Movie;
+const Users = Models.User;
+
+
+// Connect to the Database
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
 
 // Assign variable for express()
 const app = express();
