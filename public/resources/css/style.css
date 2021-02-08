@@ -49,6 +49,6 @@ body {
   padding: 0.2rem 0.5rem;
 }
 
-tr:nth-child(2n + 1) {
-  background: rgb(192, 192, 192);
+tr:nth-child(even) {
+  background-color: rgb(192, 192, 192);
 }

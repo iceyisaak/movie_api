@@ -79,6 +79,10 @@ app.use(morgan('common'));
 // Use express.static() to serve a file 
 app.use('/documentation.html', express.static('public/documentation.html'));
 
+// 
+app.use(express.static(`${__dirname}/public/`));
+
+
 
 // Handle Errors with express()
 app.use((err, req, res, next) => {
