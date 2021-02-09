@@ -76,12 +76,8 @@ app.use(bodyParser.json());
 // Use Morgan to log all requests from users
 app.use(morgan('common'));
 
-// Use express.static() to serve a file 
-app.use('/documentation.html', express.static('public/documentation.html'));
-
-// 
-app.use(express.static(`${__dirname}/public/`));
-
+// Route requests to serve static files in /public/
+app.use('/', express.static(`${__dirname}/public/`));
 
 
 // Handle Errors with express()

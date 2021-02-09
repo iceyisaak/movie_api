@@ -49,6 +49,10 @@ body {
   padding: 0.2rem 0.5rem;
 }
 
-tr:nth-child(even) {
+.tr {
+  height: 3rem;
+}
+
+.tr:nth-child(even) {
   background-color: rgb(192, 192, 192);
 }
