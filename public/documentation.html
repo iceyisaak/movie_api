@@ -40,9 +40,9 @@
   <!-- Table Data -->
   <tr class="tr">
    <td class="td">
-    <span class="bold">
+    <p class="p bold mb-1">
      Get all movies
-    </span>
+    </p>
     <p class="p">
      Get a list of all the movies and their information available in the database of the platform.
     </p>
@@ -54,20 +54,64 @@
     /movies
    </td>
    <td class="td">
-    <span class="bold">
+    <p class="p bold">
      JSON Object
-    </span>
-    <p class="p">
-     Returns data of all movies in present the database of the platform.
     </p>
+    <p class="p">
+     Returns data of all movies in present the database of the platform. The details include:
+    </p>
+    <ul class="mb-1 ">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Title
+     </li>
+     <li class="li">
+      Description
+     </li>
+     <li class="li">
+      Genre
+     </li>
+     <li class="li">
+      Actors
+     </li>
+     <li class="li">
+      Featured
+     </li>
+    </ul>
+    <pre class="mb-2">
+     JSON
+      <code>
+       {
+         {
+          "Genre": {
+              "Name": "Romance",
+              "Description": "Romance films are romantic......"
+          },
+          "Director": {
+              "Name": "Nora Ephron",
+              "Bio": "Nora Ephron was educated at.......",
+              "Birth": "1941"
+          },
+          "Actors": [],
+          "_id": "601efbe5d0f56932960a25a7",
+          "Title": "Bewitched",
+          "Description": "Thinking he can overshadow an unknown...",
+          "Featured": true,
+          "Bio": "Nora Ephron was an American journalist..."
+         }
+       }
+      </code>
+     </pre>
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    <span class="bold">
+    <p class="p bold mb-1">
      Get a movie by title
-    </span>
+    </p>
     <p class="p">
      Get a single movie by movie title with its information in a list.
     </p>
@@ -134,9 +178,9 @@
 
   <tr class="tr">
    <td class="td">
-    <span class="bold">
+    <p class="p bold mb-1">
      Get a movie genre by title
-    </span>
+    </p>
     <p class="p">
      Get a movie genre by the movie title along with its description.
     </p>
@@ -176,9 +220,9 @@
 
   <tr class="tr">
    <td class="td">
-    <span class="bold">
+    <p class="p bold mb-1">
      Get a movie director by name
-    </span>
+    </p>
     <p class="p">
      Get a movie director by his/her fullname along with the biography, year of birth, and year of death (if any)
     </p>
@@ -223,9 +267,9 @@
 
   <tr class="tr">
    <td class="td">
-    <span class="bold">
+    <p class="p bold mb-1">
      Add a new user
-    </span>
+    </p>
     <p class="p">
      Add a new user to the platform. Users can enter personal details, including:
     </p>
