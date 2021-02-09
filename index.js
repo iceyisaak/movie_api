@@ -158,7 +158,7 @@ app.get('/movies/:Title/Genre', (req, res) => {
             .send(`Movie ${req.params.Title} not found.`);
         } else {
           res
-            .json(movie.Genre.Name)
+            .json(movie.Genre)
             .status(201);
         }
       }
@@ -176,17 +176,17 @@ app.get('/movies/:Title/Genre', (req, res) => {
 // GET a movie director info by name
 app.get('/movies/director/:Name', (req, res) => {
   Movies.findOne({
-    Director: req.params.Director
+    'Director.Name': req.params.Name
   })
     .then(
-      (director) => {
-        if (!director) {
+      (movie) => {
+        if (!movie) {
           res
             .status(404)
-            .send(`Director: ${req.params.Director} not found.`);
+            .send(`Director: ${req.params.Name} not found.`);
         } else {
           res
-            .json(director)
+            .json(movie.Director)
             .status(201);
         }
       }

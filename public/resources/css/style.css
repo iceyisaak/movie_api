@@ -8,6 +8,10 @@ body {
   font-size: 62.5%;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .h1__primary {
   font-size: 5rem;
 }
@@ -20,8 +24,21 @@ body {
   font-size: 1.8rem;
 }
 
+.li {
+  margin-left: 2.5rem;
+}
+
 .p {
-  font-size: 1.4rem;
+  font-size: 1rem;
+}
+
+.my-2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
 }
 
 .mb-2 {
@@ -33,7 +50,7 @@ body {
 }
 
 .table {
-  width: 80%;
+  width: 90%;
 }
 
 .th {
@@ -50,6 +67,10 @@ body {
 }
 
 .tr {
+  /* height: 5rem; */
+}
+
+.tr:nth-child(1) {
   height: 3rem;
 }
 

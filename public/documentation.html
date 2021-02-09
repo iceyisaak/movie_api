@@ -27,6 +27,9 @@
     Request
    </th>
    <th class="th">
+    Method
+   </th>
+   <th class="th">
     URL
    </th>
    <th class="th">
@@ -37,109 +40,509 @@
   <!-- Table Data -->
   <tr class="tr">
    <td class="td">
-    GET: Fetch all movies
+    <span class="bold">
+     Get all movies
+    </span>
+    <p class="p">
+     Get a list of all the movies and their information available in the database of the platform.
+    </p>
+   </td>
+   <td class="td">
+    GET
    </td>
    <td class="td">
     /movies
    </td>
    <td class="td">
-    JSON: Data of all movies in the database
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns data of all movies in present the database of the platform.
+    </p>
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    GET: Fetch a single movie by title
+    <span class="bold">
+     Get a movie by title
+    </span>
+    <p class="p">
+     Get a single movie by movie title with its information in a list.
+    </p>
+   </td>
+   <td class="td">
+    GET
    </td>
    <td class="td">
     /movies/:Title
    </td>
    <td class="td">
-    JSON: Data of a particular movie in the database
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns data of a particular movie, containing:
+    </p>
+    <ul class="mb-1 ">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Title
+     </li>
+     <li class="li">
+      Description
+     </li>
+     <li class="li">
+      Genre
+     </li>
+     <li class="li">
+      Actors
+     </li>
+     <li class="li">
+      Featured
+     </li>
+    </ul>
+    <pre class="mb-2">
+     JSON
+      <code>
+       {
+         {
+          "Genre": {
+              "Name": "Romance",
+              "Description": "Romance films are romantic......"
+          },
+          "Director": {
+              "Name": "Nora Ephron",
+              "Bio": "Nora Ephron was educated at.......",
+              "Birth": "1941"
+          },
+          "Actors": [],
+          "_id": "601efbe5d0f56932960a25a7",
+          "Title": "Bewitched",
+          "Description": "Thinking he can overshadow an unknown...",
+          "Featured": true,
+          "Bio": "Nora Ephron was an American journalist..."
+         }
+       }
+      </code>
+     </pre>
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    GET: Fetch a genre by genre name
+    <span class="bold">
+     Get a movie genre by title
+    </span>
+    <p class="p">
+     Get a movie genre by the movie title along with its description.
+    </p>
    </td>
    <td class="td">
-    /movies/genre/:name
+    GET
    </td>
    <td class="td">
-    JSON: Movie genre of a particular movie
+    /movies/:Title/genre
+   </td>
+   <td class="td">
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns the movie genre of the particular movie
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      Genre Name
+     </li>
+     <li class="li">
+      Genre Description
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "Name": "Romance",
+        "Description": "Romance films or romance movies are..."
+       }
+      </code>
+     </pre>
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    GET: Fetch a movie director by name
+    <span class="bold">
+     Get a movie director by name
+    </span>
+    <p class="p">
+     Get a movie director by his/her fullname along with the biography, year of birth, and year of death (if any)
+    </p>
    </td>
    <td class="td">
-    /movies/:director/:name
+    GET
    </td>
    <td class="td">
-    JSON: Data of a movie director (along with bio, birth year, and dead year)
+    /movies/director/:Name
+   </td>
+   <td class="td">
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns the data of the movie director along with details including:
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      Bio
+     </li>
+     <li class="li">
+      Birth year
+     </li>
+     <li class="li">
+      Death year (if any)
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "Name": "Jonathan Demme",
+        "Bio": "Robert Jonathan Demme was an American director...",
+        "Birth": "1944",
+        "Death": "2017"
+       }
+      </code>
+     </pre>
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    POST: Add a new user
+    <span class="bold">
+     Add a new user
+    </span>
+    <p class="p">
+     Add a new user to the platform. Users can enter personal details, including:
+    </p>
+    <ul class="mb-2">
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthdate
+     </li>
+    </ul>
+    <span class="bold">Input Format</span>:
+    <pre class="mb-1">
+     <code>
+      {
+       "Username": "jondoe",
+       "Password": "1234",
+       "Email": "jondoe@gmail.com",
+       "Birthday":"11/12/1990"
+      }
+     </code>
+    </pre>
+   </td>
+   <td class="td">
+    POST
    </td>
    <td class="td">
     /users
    </td>
    <td class="td">
-    JSON: Data of recently added user
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns the data of recently added user's information including:
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthday
+     </li>
+     <li class="li">
+      FavouriteMovies
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "_id": "60228aca3dac8501d3a328d3",
+        "Username": "jondoe",
+        "Password": "1234",
+        "Email": "jondoe@gmail.com",
+        "Birthday": "1990-11-11T23:00:00.000Z",
+        "FavouriteMovies": [],
+        "__v": 0
+       }
+      </code>
+     </pre>
+
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    POST: User adds a movie to the list of favourite
+    <p class="bold mb-1">
+     Update a user's information by username
+    </p>
+    <p class="p mb-1">
+     Edit a platform user's personal information by username. The details can be altered simply entering by a new
+     details.
+    </p>
+    <p class="p mb-1">
+     Any details wished to be kept, must also be specified in its original form and NOT omitted.
+    </p>
+    <p class="p mb-1">
+     The details include:
+    </p>
+    <ul class="mb-2">
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthdate
+     </li>
+    </ul>
+
+    <p class="bold mb-1">Input Format</p>:
+    <pre class="mb-1">
+     JSON
+     <code>
+      {
+       "Username": "jondoe",
+       "Password": "1234",
+       "Email": "jondoe@gmail.com",
+       "Birthday":"11/12/1990"
+      }
+     </code>
+    </pre>
    </td>
    <td class="td">
-    /users/:username/:movie/:id
+    PUT
    </td>
    <td class="td">
-    Text: Showing that the user has added a new movie successfully from a list of favourite.
+    /users/:Username
+   </td>
+   <td class="td">
+    <span class="bold">
+     JSON Object
+    </span>
+    <p class="p">
+     Returns the data of recently updated user's information including:
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthday
+     </li>
+     <li class="li">
+      FavouriteMovies
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "_id": "60228aca3dac8501d3a328d3",
+        "Username": "jondoe",
+        "Password": "1234",
+        "Email": "jondoe@gmail.com",
+        "Birthday": "1990-11-11T23:00:00.000Z",
+        "FavouriteMovies": [],
+        "__v": 0
+       }
+      </code>
+     </pre>
+
    </td>
   </tr>
 
   <tr class="tr">
    <td class="td">
-    PUT: Update user info by username
+    <p class="p bold mb-1">
+     Add a movie to a user's list of favourite movie
+    </p>
+    <p class="p">
+     Adds a movie available in the platform to a user's 'FavouriteMovies' array by MovieID
+    </p>
    </td>
    <td class="td">
-    /users/:username
+    POST
    </td>
    <td class="td">
-    Text: Showing that user data has been successfully updated.
+    /users/:Username/movies/:MovieID
+   </td>
+   <td class="td">
+    <p class="p bold">
+     JSON Object
+    </p>
+    <p class="p">
+     Returns the user data in JSON format along with the MovieID being added into the 'FavouriteMovies' array
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthday
+     </li>
+     <li class="li">
+      FavouriteMovies
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "FavouriteMovies": [
+            "601ef184d0f56932960a259f"
+        ],
+        "_id": "60228aca3dac8501d3a328d3",
+        "Username": "jondoe",
+        "Password": "1234",
+        "Email": "jondoe@gmail.com",
+        "Birthday": "1990-11-11T23:00:00.000Z",
+        "__v": 0
+    }
+      </code>
+     </pre>
    </td>
   </tr>
 
-  <tr class="tr">
-   <td class="td">
-    DELETE: User can remove a movie from the list of favourite
-   </td>
-   <td class="td">
-    /users/:username/:movie/:id
-   </td>
-   <td class="td">
-    Text: Showing that the user has removed a movie successfully from a list of favourite
-   </td>
-  </tr>
 
   <tr class="tr">
    <td class="td">
-    DELETE: User can deregister from the platform
+    <p class="p bold mb-1">
+     Remove a movie from a user's list of favourite movie
+    </p>
+    <p class="p">
+     Removes a movie from a user's 'FavouriteMovies' array by MovieID
+    </p>
    </td>
    <td class="td">
-    /users/:username
+    PUT
    </td>
    <td class="td">
-    Text: Showing that the user data has removed from the platform
+    /users/:Username/movies/:MovieID
+   </td>
+   <td class="td">
+    <p class="p bold">
+     JSON Object
+    </p>
+    <p class="p">
+     Returns the user data in JSON format along with the MovieID being removed from the 'FavouriteMovies' array
+    </p>
+    <ul class="mb-1">
+     <li class="li">
+      _id
+     </li>
+     <li class="li">
+      Username
+     </li>
+     <li class="li">
+      Password
+     </li>
+     <li class="li">
+      Email
+     </li>
+     <li class="li">
+      Birthday
+     </li>
+     <li class="li">
+      FavouriteMovies
+     </li>
+    </ul>
+    <pre class="mb-1">
+     JSON
+      <code>
+       {
+        "FavouriteMovies": [],
+        "_id": "60228aca3dac8501d3a328d3",
+        "Username": "jondoe",
+        "Password": "1234",
+        "Email": "jondoe@gmail.com",
+        "Birthday": "1990-11-11T23:00:00.000Z",
+        "__v": 0
+       }
+      </code>
+     </pre>
+   </td>
+  </tr>
+
+
+
+  <tr class="tr">
+   <td class="td">
+    <p class="p bold">
+     Remove a user by username
+    </p>
+    <p class="p">
+     Remove an existing platform user from the platform.
+    </p>
+   </td>
+   <td class="td">
+    DELETE
+   </td>
+   <td class="td">
+    /users/:Username
+   </td>
+   <td class="td">
+    <p class="p bold">
+     Text
+    </p>
+    Returns a text message showing that the user data has been successfully removed from the platform.
    </td>
   </tr>
 
