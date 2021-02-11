@@ -24,6 +24,7 @@ require('./passport');
 //   useFindAndModify: false
 // });
 
+// Connect to the 'remote' database
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
