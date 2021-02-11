@@ -99,34 +99,36 @@ app.use('/', express.static(`${__dirname}/public/`));
 
 
 // Use CORS to allow request from specific origins
-let allowedOrigins = [
-  'http://127.0.0.1:8080',
-  'http://testsite.com'
-];
+// let allowedOrigins = [
+//   'http://127.0.0.1:8080',
+//   'http://heroku.com'
+// ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) {
-        return callback(null, true);
-      }
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) {
+//         return callback(null, true);
+//       }
 
-      // If a specific origin is NOT found in allowedOrigins []
-      if (allowedOrigins.indexOf(origin) === -1) {
+//       // If a specific origin is NOT found in allowedOrigins []
+//       if (allowedOrigins.indexOf(origin) === -1) {
 
-        // Return this message
-        const message = `The CORS policy for this app doesn't allow access from ${origin}`;
-        return callback(
-          new Error(message),
-          false
-        );
-      }
+//         // Return this message
+//         const message = `The CORS policy for this app doesn't allow access from ${origin}`;
+//         return callback(
+//           new Error(message),
+//           false
+//         );
+//       }
 
-      // Return callback
-      return callback(null, true);
-    }
-  })
-);
+//       // Return callback
+//       return callback(null, true);
+//     }
+//   })
+// );
+
+app.use(cors());
 
 
 
@@ -374,7 +376,7 @@ app.post(
   // Validate Input
   [
     // Username is require and must have at least X characters
-    check('Username', 'Username is required.')
+    check('Username', 'Username is required to have at least 6 characters.')
       .isLength({
         min: 6
       }),
@@ -382,7 +384,7 @@ app.post(
     check('Username', 'Username contains non-alphanumeric numbers - NOT allowed')
       .isAlphanumeric(),
     // Password is required, and must have X characters or more
-    check('Password', 'Password is required.')
+    check('Password', 'Password is required to have at least 6 characters.')
       .not()
       .isEmpty()
       .isLength({
