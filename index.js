@@ -18,11 +18,19 @@ require('./passport');
 
 
 // Connect to the Database
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
+
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
 });
+
+
 
 
 // Assign variable for express()
