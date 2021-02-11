@@ -646,7 +646,7 @@ app.delete(
 
 
 
-// Listen for response on this port
+// Listen for response on either a pre-configured port or simply on this port
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
