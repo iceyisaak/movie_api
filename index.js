@@ -4,12 +4,16 @@ const bodyParser = require('body-parser');
 const uuid = require('uuid');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const passport = require('passport');
+const { check, validationResult } = require('express-validator');
 
 // Import Models
 const Models = require('./models');
 const Movies = Models.Movie;
 const Users = Models.User;
-const passport = require('passport');
+
+// Import ./passport.js
 require('./passport');
 
 
@@ -85,6 +89,35 @@ app.use(morgan('common'));
 app.use('/', express.static(`${__dirname}/public/`));
 
 
+// Use CORS to allow request from specific origins
+let allowedOrigins = [
+  'http://127.0.0.1:8080',
+  'http://testsite.com'
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      // If a specific origin is NOT found in allowedOrigins []
+      if (allowedOrigins.indexOf(origin) === -1) {
+
+        // Return this message
+        const message = `The CORS policy for this app doesn't allow access from ${origin}`;
+        return callback(
+          new Error(message),
+          false
+        );
+      }
+
+      // Return callback
+      return callback(null, true);
+    }
+  })
+);
 
 
 
@@ -324,45 +357,104 @@ app.get(
 
 // POST 
 // Add a new user to the platform
-app.post('/users', (req, res) => {
+app.post(
 
-  Users.findOne({
-    Username: req.body.Username
-  })
-    .then(
-      (user) => {
-        if (user) {
-          return res
-            .status(400)
-            .send(`${req.body.Username} already exists.`);
-        } else {
-          Users
-            .create({
-              Username: req.body.Username,
-              Password: req.body.Password,
-              Email: req.body.Email,
-              Birthday: req.body.Birthday
-            })
-            .then(
-              (user) => {
-                res
-                  .status(201)
-                  .json(user);
-              }
-            )
-            .catch(
-              (error) => {
-                console.error(error);
-                res
-                  .status(500)
-                  .send(`Error: ${error}`);
-              }
-            );
+  // Endpoint URL
+  '/users',
+
+  // Validate Input
+  [
+    // Username is require and must have at least X characters
+    check('Username', 'Username is required.')
+      .isLength({
+        min: 6
+      }),
+    // Username contains non-alphanumeric numbers - NOT allowed
+    check('Username', 'Username contains non-alphanumeric numbers - NOT allowed')
+      .isAlphanumeric(),
+    // Password is required, and must have X characters or more
+    check('Password', 'Password is required.')
+      .not()
+      .isEmpty()
+      .isLength({
+        min: 6
+      }),
+    // Email must have a valid format
+    check('Email', 'Email seems to be invalid.')
+      .isEmail()
+  ],
+
+  // Callback function
+  (req, res) => {
+
+    // Check validation result of the request for errors
+    const errors = validationResult(req);
+
+    // If empty error is not found
+    if (!errors.isEmpty()) {
+
+      // Return this status code and JSON container errors array
+      return res
+
+        // 422 Unprocessable Entity
+        .status(422)
+        .json({
+          errors: errors.array()
+        });
+    }
+
+    // Declare .hashPassword() to User's Password in req.body
+    const hashedPassword = Users.hashPassword(req.body.Password);
+
+    // findOne() particular Username in the DB
+    Users.findOne({
+      Username: req.body.Username
+    })
+      .then(
+
+        // When user is found, return this message
+        (user) => {
+          if (user) {
+            return res
+              .status(400)
+              .send(`${req.body.Username} already exists.`);
+
+            // Else, create the user
+          } else {
+            Users
+              .create({
+                Username: req.body.Username,
+
+                // Store the hashed version of the Password entered
+                Password: hashedPassword,
+                Email: req.body.Email,
+                Birthday: req.body.Birthday
+              })
+
+              // Then return status code and JSON Object with User data
+              .then(
+                (user) => {
+                  res
+                    .status(201)
+                    .json(user);
+                }
+              )
+
+              // Catch any error found
+              .catch(
+                (error) => {
+                  console.error(error);
+                  res
+                    .status(500)
+                    .send(`Error: ${error}`);
+                }
+              );
+          }
         }
-      }
-    );
+      );
 
-});
+  });
+
 
 
 // PUT: Update User Info
@@ -374,14 +466,45 @@ app.put(
       session: false
     }
   ),
+
+  // Validate Input
+  [
+    check('Username', 'Username is required.')
+      .isLength({
+        min: 6
+      }),
+    check('Usernane', 'Username contains a non-alphanumeric numbers - NOT allowed')
+      .isAlphanumeric(),
+    check('Password', 'Password is required.')
+      .not()
+      .isEmpty()
+      .isLength({
+        min: 6
+      }),
+    check('Email', 'Email seems to be invalid.')
+      .isEmail()
+  ],
   (req, res) => {
+
+    // Handle any errors from the input validation
+    const errors = validationResult(res);
+
+    if (!errors.isEmpty()) {
+      return res
+        .status(422)
+        .json({
+          erros: errors.array()
+        });
+    }
+
+    const hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOneAndUpdate({
       Username: req.params.Username
     },
       {
         $set: {
           Username: req.body.Username,
-          Password: req.body.Password,
+          Password: hashedPassword,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         }
@@ -524,7 +647,7 @@ app.delete(
 
 
 // Listen for response on this port
-const PORT = 8080;
-app.listen(PORT, () => {
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });

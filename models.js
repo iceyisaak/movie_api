@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 let movieSchema = mongoose.Schema({
 
@@ -45,6 +46,20 @@ let userSchema = mongoose.Schema({
   ref: 'Movie'
  }]
 });
+
+// Add a static class 'hashPassword' to take in 'password' parameter
+userSchema.statics.hashPassword = (password) => {
+
+ // Return synchronously auto-generated hash for 'password', with the salt length of 10
+ return bcrypt.hashSync(password, 10);
+};
+
+// Add an instance method 'validatePassword' to take in 'password' parameter
+userSchema.methods.validatePassword = function (password) {
+
+ // Return result of synchronously tested 'this.password' against the hashed password
+ return bcrypt.compareSync(password, this.password);
+};
 
 let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
