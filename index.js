@@ -18,18 +18,18 @@ require('./passport');
 
 
 // Connect to the Database
-// mongoose.connect('mongodb://localhost:27017/myFlixDB', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true,
-//   useFindAndModify: false
-// });
-
-// Connect to the 'remote' database
-mongoose.connect(process.env.CONNECTION_URI, {
+mongoose.connect('mongodb://localhost:27017/myFlixDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false
 });
+
+// Connect to the 'remote' database
+// mongoose.connect(process.env.CONNECTION_URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
 
 
 
@@ -224,9 +224,9 @@ app.get(
 
   });
 
-// GET a movie genre by movie title
+// GET a movie genre by name
 app.get(
-  '/movies/:Title/Genre',
+  '/movies/genre/:Name',
   passport.authenticate(
     'jwt',
     {
@@ -235,14 +235,14 @@ app.get(
   ),
   (req, res) => {
     Movies.findOne({
-      Title: req.params.Title
+      'Genre.Name': req.params.Name
     })
       .then(
         (movie) => {
           if (!movie) {
             res
               .status(404)
-              .send(`Movie ${req.params.Title} not found.`);
+              .send(`Movie ${req.params.Name} not found.`);
           } else {
             res
               .json(movie.Genre)
