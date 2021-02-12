@@ -58,7 +58,7 @@ userSchema.statics.hashPassword = (password) => {
 userSchema.methods.validatePassword = function (password) {
 
  // Return result of synchronously tested 'this.password' against the hashed password
- return bcrypt.compareSync(password, this.password);
+ return bcrypt.compareSync(password, this.Password);
 };
 
 let Movie = mongoose.model('Movie', movieSchema);
