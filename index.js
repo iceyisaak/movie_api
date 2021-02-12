@@ -18,18 +18,18 @@ require('./passport');
 
 
 // Connect to the Database
-mongoose.connect('mongodb://localhost:27017/myFlixDB', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-});
-
-// Connect to the 'remote' database
-// mongoose.connect(process.env.CONNECTION_URI, {
+// mongoose.connect('mongodb://localhost:27017/myFlixDB', {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 //   useFindAndModify: false
 // });
+
+// Connect to the 'remote' database
+mongoose.connect(process.env.CONNECTION_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false
+});
 
 
 
