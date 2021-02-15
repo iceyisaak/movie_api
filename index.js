@@ -152,8 +152,7 @@ app.get('/', (req, res) => {
 app.get(
 
   // set URL endpoint
-  '/movies'
-),
+  '/movies',
 
   // callback
   (req, res) => {
