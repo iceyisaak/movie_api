@@ -152,19 +152,8 @@ app.get('/', (req, res) => {
 app.get(
 
   // set URL endpoint
-  '/movies',
-
-  // Use PassportJS as a middleware to authenticate user
-  passport.authenticate(
-
-    // Use 'JWT' strategy for authentication process
-    'jwt',
-
-    //When authentication is done: Disable Session support
-    {
-      session: false
-    }
-  ),
+  '/movies'
+),
 
   // callback
   (req, res) => {
@@ -302,9 +291,17 @@ app.get(
 
 // GET all users
 app.get(
+
+  // set URL endpoint
   '/users',
+
+  // Use PassportJS as a middleware to authenticate user
   passport.authenticate(
+
+    // Use 'JWT' strategy for authentication process
     'jwt',
+
+    // When authentication is done, disable session support
     {
       session: false
     }
