@@ -155,6 +155,12 @@ app.get(
 
   // set URL endpoint
   '/movies',
+  passport.authenticate(
+    'jwt',
+    {
+      session: false
+    }
+  ),
 
   // callback
   (req, res) => {
