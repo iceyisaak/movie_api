@@ -88,6 +88,9 @@ const usersList = [
 // Use BodyParser to Parse data in the Request Body as JSON
 app.use(bodyParser.json());
 
+// Enable CORS for all request
+app.use(cors());
+
 // Import auth.js file + make Express() available in auth.js
 const auth = require('./auth')(app);
 
@@ -128,7 +131,6 @@ app.use('/', express.static(`${__dirname}/public/`));
 //   })
 // );
 
-app.use(cors());
 
 
 
