@@ -37,53 +37,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
 // Assign variable for express()
 const app = express();
 
-// movieList Object Array
-const movieList = [
-  {
-    title: 'Bohemian Rhapsody',
-    year: 2018,
-    description: 'Description about Bohemian Rhapsody',
-    genre: {
-      name: 'drama',
-      description: 'Description of biographical drama'
-    },
-    director: {
-      name: 'Bryan Singer',
-      bio: 'Bio of Bryan Singer',
-      birth: '1965',
-      death: ''
-    },
-    imageURL: '',
-    featured: ''
-  },
-  {
-    title: 'Forrest Gump',
-    year: 1994,
-    description: 'Description about Forrest Gump',
-    genre: {
-      name: 'drama',
-      description: 'Description of comedy drama'
-    },
-    director: {
-      name: 'Robert Zemeckis',
-      bio: 'Bio of Robert Zemeckis',
-      birth: '1952',
-      death: ''
-    },
-    imageURL: '',
-    featured: ''
-  }
-];
-
-const usersList = [
-  {
-    username: 'Jon Doe',
-    email: 'jon@doe.com',
-    password: '12345',
-    favMovies: []
-  }
-];
-
 
 // Use BodyParser to Parse data in the Request Body as JSON
 app.use(bodyParser.json());
