@@ -50,6 +50,14 @@
 
      ```
 
+   - DevDependencies:
+
+   ```
+    "jsdoc": "^3.6.7",
+    "nodemon": "^2.0.7"
+
+   ```
+
 4. Link to Live project:
 
    - myFlixAPI: https://myflix-20210211.herokuapp.com/
